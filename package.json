@@ -16,6 +16,7 @@
     "axios-logger": "^2.7.0",
     "drizzle-orm": "^0.28.6",
     "next": "14.0.2",
+    "rand-user-agent": "^2.0.38",
     "react": "^18",
     "react-dom": "^18",
     "zod": "^3.22.4"

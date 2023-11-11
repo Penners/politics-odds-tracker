@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as AxiosLogger from "axios-logger";
+import randUserAgent from "rand-user-agent";
 
 const instance = axios.create({
   baseURL: "https://services.skybet.com/sportsapi/v2",
@@ -26,7 +27,11 @@ export interface EventClass {
 
 export const getEventCategories = async () => {
   try {
-    const data = await instance.get<getEventCategories>("/a-z");
+    const data = await instance.get<getEventCategories>("/a-z", {
+      headers: {
+        "User-Agent": randUserAgent("desktop"),
+      },
+    });
     return {
       data: data.data.event_classes.map((category) => ({
         name: category.name,
@@ -65,7 +70,12 @@ export type EventEvent = {
 export const getEventsForCategory = async (categorySlug: string) => {
   try {
     const response = await instance.get<GetEventsForCategory>(
-      `${categorySlug}`
+      `${categorySlug}`,
+      {
+        headers: {
+          "User-Agent": randUserAgent("desktop"),
+        },
+      }
     );
     return {
       data: Object.entries(response.data.events).map(
@@ -150,7 +160,11 @@ export interface DataNotes {
 
 export const getOddsForEvent = async (eventId: string | number) => {
   try {
-    const response = await instance.get<GetOddsForEvent>(`/event/${eventId}`);
+    const response = await instance.get<GetOddsForEvent>(`/event/${eventId}`, {
+      headers: {
+        "User-Agent": randUserAgent("desktop"),
+      },
+    });
     return {
       data: {
         ...response.data,
