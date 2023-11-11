@@ -10,8 +10,12 @@ const instance = axios.create({
     api_user: "",
   },
 });
-//@ts-ignore
-instance.interceptors.request.use(AxiosLogger.requestLogger);
+
+instance.interceptors.request.use(
+  //@ts-ignore
+  AxiosLogger.requestLogger,
+  AxiosLogger.errorLogger
+);
 instance.interceptors.response.use(
   AxiosLogger.responseLogger,
   AxiosLogger.errorLogger
