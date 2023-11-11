@@ -2,10 +2,9 @@ import { getOddsForEvent } from "@/clients/skybet";
 import { db } from "@/database/client";
 import { Odds } from "@/database/schema";
 import { NextResponse } from "next/server";
-
+export const dynamic = "force-dynamic";
 const EVENT_ID = 30490503;
 const MARKET_ID = 268249179;
-
 export async function GET(request: Request) {
   const data = await getOddsForEvent(EVENT_ID);
   const market = data.data?.markets.find(
