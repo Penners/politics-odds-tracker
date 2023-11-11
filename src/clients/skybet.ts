@@ -11,16 +11,6 @@ const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use(
-  //@ts-ignore
-  AxiosLogger.requestLogger,
-  AxiosLogger.errorLogger
-);
-instance.interceptors.response.use(
-  AxiosLogger.responseLogger,
-  AxiosLogger.errorLogger
-);
-
 export interface getEventCategories {
   event_classes: EventClass[];
 }
@@ -47,6 +37,7 @@ export const getEventCategories = async () => {
       error: false,
     };
   } catch (e) {
+    console.error(e);
     return { data: null, error: true };
   }
 };
@@ -100,6 +91,7 @@ export const getEventsForCategory = async (categorySlug: string) => {
       error: null,
     };
   } catch (e) {
+    console.error(e);
     return { error: true, data: null };
   }
 };
@@ -186,6 +178,7 @@ export const getOddsForEvent = async (eventId: string | number) => {
       error: false,
     };
   } catch (e) {
+    console.error(e);
     return { error: true, data: null };
   }
 };
