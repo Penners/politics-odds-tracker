@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run migrate:generate && next build",
+    "build": "npm run migrate:run && next build",
     "start": "next start",
     "lint": "next lint",
     "migrate:generate": "drizzle-kit generate:sqlite config=drizzle.config.ts",
