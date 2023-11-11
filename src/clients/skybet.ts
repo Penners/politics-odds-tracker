@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as AxiosLogger from "axios-logger";
 
 const instance = axios.create({
   baseURL: "https://services.skybet.com/sportsapi/v2",
@@ -6,6 +7,12 @@ const instance = axios.create({
     api_user: "x",
   },
 });
+//@ts-ignore
+instance.interceptors.request.use(AxiosLogger.requestLogger);
+instance.interceptors.response.use(
+  AxiosLogger.responseLogger,
+  AxiosLogger.errorLogger
+);
 
 export interface getEventCategories {
   event_classes: EventClass[];
