@@ -1,0 +1,1 @@
+ALTER TABLE odds ADD `bookmaker` text;

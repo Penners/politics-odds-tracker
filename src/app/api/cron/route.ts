@@ -35,6 +35,7 @@ export async function GET(request: Request) {
         outcomeId: String(outcome.outcomeId),
         oddsDecimal: outcome.lp_decimal,
         oddsFractional: outcome.lp_disp_fraction,
+        bookmaker: "SKY_BET",
       }))
     );
   }

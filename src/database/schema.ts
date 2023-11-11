@@ -22,6 +22,7 @@ export const Odds = sqliteTable(
     timestamp: integer("timestamp", { mode: "timestamp_ms" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
+    bookmaker: text("bookmaker"),
   },
   (table) => {
     return {
