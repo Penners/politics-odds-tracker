@@ -4,7 +4,7 @@ import * as AxiosLogger from "axios-logger";
 const instance = axios.create({
   baseURL: "https://services.skybet.com/sportsapi/v2",
   params: {
-    api_user: "x",
+    api_user: "",
   },
 });
 //@ts-ignore
