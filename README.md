@@ -2,7 +2,7 @@
 
 - Turso SQLite
 
-## Getting Started
+## Getting Started Running locally
 
 First, run the migrations
 
@@ -18,7 +18,7 @@ npm run dev
 
 ## Deploying to vercel
 
-add the following turso secrets to your vercel account
+add the following turso secrets to your vercel environment variables
 
 - DATABASE_URL
 - DATABASE_AUTH_TOKEN
