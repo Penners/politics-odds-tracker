@@ -10,6 +10,7 @@ export const selectMostRecentOdds = async (
       oddsDecimal: true,
       oddsFractional: true,
       outcome: true,
+      timestamp: true,
     },
     where: (table, { eq, and }) => {
       return and(
