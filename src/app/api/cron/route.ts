@@ -4,6 +4,7 @@ import { LatestOdds, Odds } from "@/database/schema";
 import { desc } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { EVENT_ID, MARKET_ID } from "@/consts/trackedEvents";
+import { revalidateTag } from "next/cache";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
@@ -67,6 +68,7 @@ export async function GET(request: NextRequest) {
             });
         })
       );
+      revalidateTag(`${EVENT_ID}`);
       return NextResponse.json({ inserted, latestOddsUpdate });
     }
   }

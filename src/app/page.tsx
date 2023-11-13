@@ -1,9 +1,20 @@
 import { Donut } from "@/components/client/Donut";
 import { EVENT_ID, MARKET_ID } from "@/consts/trackedEvents";
 import { selectMostRecentOdds } from "@/lib/selectMostRecentOdds";
+import { unstable_cache } from "next/cache";
 export const dynamic = "force-dynamic";
+
+const getCachedRecentOdds = unstable_cache(
+  async () => selectMostRecentOdds(EVENT_ID, MARKET_ID, "SKY_BET"),
+  [`getCachedRecentOdds`],
+  {
+    revalidate: 60 * 60,
+    tags: [`EVENT:${EVENT_ID}`],
+  }
+);
+
 export default async function Home() {
-  const data = await selectMostRecentOdds(EVENT_ID, MARKET_ID, "SKY_BET");
+  const data = await getCachedRecentOdds();
   return (
     <main>
       <h1 className="p-4">Next Conservative party leader betting odds</h1>
