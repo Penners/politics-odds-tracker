@@ -20,9 +20,9 @@ export default async function Home() {
       <h1 className="p-4">Next Conservative party leader betting odds</h1>
       <div className="card m-4 bg-white">
         <div className="card-body">
+          <h3>Current betting odds sourced from Skybet</h3>
           <div className="overflow-x-auto">
-            <h3>Current betting odds sourced from Skybet</h3>
-            <table className="table table-xs">
+            <table className="table table-xs table-pin-rows table-pin-cols">
               <thead>
                 <tr>
                   <th>Candidate</th>
@@ -35,11 +35,11 @@ export default async function Home() {
                 {data.map((x) => {
                   return (
                     <tr key={x.outcome}>
-                      <td>{x.outcome}</td>
+                      <th>{x.outcome}</th>
                       <td>{x.oddsFractional}</td>
                       <td>{x.oddsDecimal?.toFixed(2)}</td>
                       <td suppressHydrationWarning>
-                        {x.timestamp.toISOString()}
+                        {new Date(x.timestamp).toISOString()}
                       </td>
                     </tr>
                   );
