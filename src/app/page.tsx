@@ -20,31 +20,33 @@ export default async function Home() {
       <h1 className="p-4">Next Conservative party leader betting odds</h1>
       <div className="card m-4 bg-white">
         <div className="card-body">
-          <h3>Current betting odds sourced from Skybet</h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Candidate</th>
-                <th>Odds Fractional (UK)</th>
-                <th>Odds Decimal (EU)</th>
-                <th>Last Checked</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((x) => {
-                return (
-                  <tr key={x.outcome}>
-                    <td>{x.outcome}</td>
-                    <td>{x.oddsFractional}</td>
-                    <td>{x.oddsDecimal?.toFixed(2)}</td>
-                    <td suppressHydrationWarning>
-                      {x.timestamp.toISOString()}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <h3>Current betting odds sourced from Skybet</h3>
+            <table className="table table-xs">
+              <thead>
+                <tr>
+                  <th>Candidate</th>
+                  <th>Odds Fractional (UK)</th>
+                  <th>Odds Decimal (EU)</th>
+                  <th>Last Checked</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((x) => {
+                  return (
+                    <tr key={x.outcome}>
+                      <td>{x.outcome}</td>
+                      <td>{x.oddsFractional}</td>
+                      <td>{x.oddsDecimal?.toFixed(2)}</td>
+                      <td suppressHydrationWarning>
+                        {x.timestamp.toISOString()}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div className="card m-4 bg-white">
