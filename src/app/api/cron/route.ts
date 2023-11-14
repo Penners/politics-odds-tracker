@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
             });
         })
       );
-      revalidateTag(`${EVENT_ID}`);
+      revalidateTag(`EVENT:${EVENT_ID}`);
       return NextResponse.json({ inserted, latestOddsUpdate });
     }
   }

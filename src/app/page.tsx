@@ -1,6 +1,8 @@
 import { Donut } from "@/components/client/Donut";
+import { LineChart } from "@/components/client/Line";
 import { EVENT_ID, MARKET_ID } from "@/consts/trackedEvents";
 import { selectMostRecentOdds } from "@/lib/selectMostRecentOdds";
+import { selectTimeSeriesOdds } from "@/lib/selectTimeSeriesOdds";
 import { unstable_cache } from "next/cache";
 export const dynamic = "force-dynamic";
 
@@ -13,11 +15,27 @@ const getCachedRecentOdds = unstable_cache(
   }
 );
 
+const getCachedTimeSeriesOdds = unstable_cache(
+  async () => selectTimeSeriesOdds(EVENT_ID, MARKET_ID, "SKY_BET"),
+  [`getCachedTimeSeriesOdds`],
+  {
+    revalidate: 60 * 60,
+    tags: [`EVENT:${EVENT_ID}`],
+  }
+);
+
 export default async function Home() {
   const data = await getCachedRecentOdds();
+  const timeData = await getCachedTimeSeriesOdds();
   return (
     <main>
       <h1 className="p-4">Next Conservative party leader betting odds</h1>
+      <div className="card m-4 bg-white">
+        <div className="card-body">
+          <LineChart data={timeData} />
+        </div>
+      </div>
+
       <div className="card m-4 bg-white">
         <div className="card-body">
           <h3>Current betting odds sourced from Skybet</h3>
