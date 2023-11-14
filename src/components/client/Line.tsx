@@ -60,6 +60,7 @@ export const LineChart: React.FC<{
           return {
             label: key,
             backgroundColor: colours.hex(key),
+            borderColor: colours.hex(key),
             data: value.map((z) => ({
               x: new Date(z.timestamp),
               y: z.oddsDecimal,
