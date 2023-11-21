@@ -24,6 +24,6 @@ export const selectTimeSeriesOdds = async (
   });
   return data.map((x) => ({
     ...x,
-    oddsDecimal: x.oddsDecimal ?? 0,
+    oddsDecimal: x.oddsDecimal ? (1 / x.oddsDecimal) * 100 : 0,
   }));
 };

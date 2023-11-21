@@ -54,22 +54,25 @@ export const LineChart: React.FC<{
   });
 
   return (
-    <Line
-      data={{
-        datasets: Array.from(datasets.entries()).map(([key, value]) => {
-          return {
-            label: key,
-            backgroundColor: colours.hex(key),
-            borderColor: colours.hex(key),
-            data: value.map((z) => ({
-              x: new Date(z.timestamp),
-              y: z.oddsDecimal,
-            })),
-          };
-        }),
-      }}
-      //@ts-ignore
-      options={options}
-    />
+    <>
+      <h3>Implied Probability (%) over time</h3>
+      <Line
+        data={{
+          datasets: Array.from(datasets.entries()).map(([key, value]) => {
+            return {
+              label: key,
+              backgroundColor: colours.hex(key),
+              borderColor: colours.hex(key),
+              data: value.map((z) => ({
+                x: new Date(z.timestamp),
+                y: z.oddsDecimal,
+              })),
+            };
+          }),
+        }}
+        //@ts-ignore
+        options={options}
+      />
+    </>
   );
 };
